@@ -1,12 +1,15 @@
 import ASKCore
 import Foundation
 import Knit
+import KnitMacros
 import Models
 import SwiftUI
 
-final class MyAssembly: AutoInitModuleAssembly {
+final class MyAppAssembly: AutoInitModuleAssembly {
     static var dependencies: [any Knit.ModuleAssembly.Type] = []
     typealias TargetResolver = BaseResolver
+
+    private let purpose: IOCPurpose
 
     init() {
         self.purpose = .testing
@@ -36,7 +39,7 @@ final class MyAssembly: AutoInitModuleAssembly {
 
     @MainActor
     private func registerViewModels(container: Container<TargetResolver>) {
-
+        container.register(ContentViewModel.self) { ContentViewModel.make(resolver: $0) }
     }
 }
 
