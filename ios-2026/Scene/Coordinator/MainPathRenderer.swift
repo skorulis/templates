@@ -1,12 +1,12 @@
 import ASKCoordinator
-import Models
+import Knit
 import SwiftUI
 
 struct MainPathRenderer: CoordinatorPathRenderer {
     typealias PathType = MainPath
     typealias ViewType = ContentView
 
-    let resolver: BaseResolver
+    let resolver: Resolver
 
     @MainActor
     func render(path: MainPath, in coordinator: Coordinator) -> ContentView {

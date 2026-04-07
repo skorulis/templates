@@ -79,7 +79,7 @@ README.md
 
 **Test host:** `{{UNIT_TESTS_TARGET}}` and snapshot target must have a **target dependency** on `{{MAIN_TARGET}}`.
 
-**Main app target — resource:** Add **`knitconfig.json`** (repo root) to the app target’s **Copy Bundle Resources** build phase so Knit can resolve config at runtime if required (match reference behavior).
+**Main app target — `knitconfig.json` (critical for KnitBuildPlugin):** The file must live on disk **and** appear in the **Xcode project’s file list** (e.g. in the project navigator, with a yellow file reference). Knit’s **Xcode** build tool plugin discovers config by scanning `xcodeProject.filePaths` for a file named exactly `knitconfig.json`; a file that exists only on disk but was never added to the project will produce *“No knitconfig.json file was found in the project.”* Adding it to **Copy Bundle Resources** is one valid way to register it. **XcodeGen:** add `knitconfig.json` under the app target `sources` with `buildPhase: resources` (and a `group`) so it is not omitted from `project.pbxproj`. Separately, keep a copy in the bundle if your runtime needs it (match reference behavior).
 
 **Main app target — build plugin dependencies (Swift Package):**
 
@@ -147,7 +147,9 @@ Run **`swiftgen`** from the repo root after creating or changing the asset catal
 
 ### 6.2 `knitconfig.json`
 
-Assembly path must match `{{MAIN_FOLDER}}/Service/App/{{ASSEMBLY_FILE}}`:
+Place **`knitconfig.json`** next to `{{PROJECT_FILE}}` (same directory as the `.xcodeproj`) unless you intentionally colocate it; **paths in `assemblyInputPaths` are relative to the directory that contains `knitconfig.json`**, not the git repo root unless those are the same.
+
+Assembly path must match `{{MAIN_FOLDER}}/Service/App/{{ASSEMBLY_FILE}}` when `knitconfig.json` sits beside the project:
 
 ```json
 {

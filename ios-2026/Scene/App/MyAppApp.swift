@@ -1,12 +1,12 @@
 import ASKCoordinator
+import ASKCore
 import Knit
-import Models
 import SwiftUI
 
 @main
 struct MyAppApp: App {
-    private let assembler: ScopedModuleAssembler<BaseResolver> = {
-        let assembler = ScopedModuleAssembler<BaseResolver>(
+    private let assembler: ScopedModuleAssembler<Resolver> = {
+        let assembler = ScopedModuleAssembler<Resolver>(
             [
                 MyAppAssembly(purpose: .normal)
             ]

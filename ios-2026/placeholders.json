@@ -1,0 +1,14 @@
+{
+  "APP_NAME": "MyApp",
+  "APP_NAME_NOSPACE": "MyApp",
+  "BUNDLE_ID": "com.skorulis.MyApp",
+  "PROJECT_FILE": "MyApp.xcodeproj",
+  "SCHEME": "MyApp",
+  "MAIN_TARGET": "MyApp",
+  "MAIN_FOLDER": "MyApp",
+  "UNIT_TESTS_TARGET": "MyAppUnitTests",
+  "SNAPSHOT_TESTS_TARGET": "MyAppSnapshotTests",
+  "ASSEMBLY_FILE": "MyAppAssembly.swift",
+  "IOS_DEPLOYMENT_TARGET": "18.0",
+  "ORGANIZATION_IDENTIFIER": "com.skorulis"
+}
